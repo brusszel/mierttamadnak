@@ -44,7 +44,7 @@
   <script>
     let phrases = [];
 
-    fetch('mondatok.json')
+    fetch('mondatok.json?version=' + (+new Date()))
       .then(res => res.json())
       .then(data => {
         phrases = data;
