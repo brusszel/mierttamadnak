@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Miért támadja ma Brüsszel a kormányt?</title>
+  <style>
+    body {
+      background-color: #002147;
+      color: #fff;
+      font-family: "Arial", sans-serif;
+      text-align: center;
+      padding: 3rem;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+      color: #ffcc00;
+    }
+    button {
+      background-color: #ffcc00;
+      color: #000;
+      font-size: 1.2rem;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    #output {
+      margin-top: 3rem;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <h1>Miért támadja ma Brüsszel a kormányt?</h1>
+  <button onclick="generateSentence()">Mutasd!</button>
+  <div id="output"> </div>
+
+  <script>
+    let phrases = [];
+
+    fetch('mondatok.json')
+      .then(res => res.json())
+      .then(data => {
+        phrases = data;
+      })
+      .catch(() => {
+        document.getElementById('output').textContent = "Hiba történt a mondatok betöltésekor.";
+      });
+
+    function generateSentence() {
+      if (phrases.length === 0) {
+        document.getElementById("output").textContent = "A mondatok még nem töltődtek be.";
+        return;
+      }
+      const choice = phrases[Math.floor(Math.random() * phrases.length)];
+      document.getElementById("output").textContent = "MERT " + choice.toUpperCase();
+    }
+  </script>
+</body>
+</html>
