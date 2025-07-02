@@ -3,21 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Miért támadja ma Brüsszel a kormányt?</title>
+  <title>Brüsszel elleni plakátgenerátor</title>
   <style>
     body {
-      background-color: #002147;
-      color: #fff;
-      font-family: "Arial", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #000;
+      font-family: Arial, sans-serif;
+    }
+
+    .plakat {
+      position: relative;
+      width: 100%;
+      max-width: 768px;
+      margin: 2rem auto;
+    }
+
+    .plakat img {
+      width: 100%;
+      display: block;
+    }
+
+    .szoveg {
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
       text-align: center;
-      padding: 3rem;
-    }
-    h1 {
+      color: black;
       font-size: 2rem;
-      margin-bottom: 2rem;
+      font-weight: bold;
       text-transform: uppercase;
-      color: #ffcc00;
+      padding: 1rem;
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 10px;
     }
+
+    .gomb-container {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
     button {
       background-color: #ffcc00;
       color: #000;
@@ -28,18 +55,18 @@
       cursor: pointer;
       font-weight: bold;
     }
-    #output {
-      margin-top: 3rem;
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: #ffffff;
-    }
   </style>
 </head>
 <body>
-  <h1>Miért támadja ma Brüsszel a kormányt?</h1>
-  <button onclick="generateSentence()">Ez veszélyes!</button>
-  <div id="output"> </div>
+
+  <div class="plakat">
+    <img src="e6397a9d-2fd4-4ac2-adbb-886955f94f11.png" alt="plakát háttér">
+    <div class="szoveg" id="output"> </div>
+  </div>
+
+  <div class="gomb-container">
+    <button onclick="generateSentence()">Ez veszélyes!</button>
+  </div>
 
   <script>
     let phrases = [];
@@ -59,7 +86,7 @@
         return;
       }
       const choice = phrases[Math.floor(Math.random() * phrases.length)];
-      document.getElementById("output").textContent = "MERT " + choice.toUpperCase();
+      document.getElementById("output").textContent = choice.toUpperCase();
     }
   </script>
 </body>
